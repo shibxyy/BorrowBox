@@ -1,0 +1,15 @@
+{
+  "name": "borrowbox",
+  "version": "1.0.0",
+  "description": "BorrowBox — A Community-Based Sharing and Borrowing Platform (BCA FYUGP Mini Project)",
+  "scripts": {
+    "server": "node server/src/server.js",
+    "client": "npm.cmd --prefix client run dev",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
+    "build": "npm.cmd --prefix client run build",
+    "seed": "node server/src/seed/seedData.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

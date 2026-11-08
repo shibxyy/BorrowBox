@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+client/dist/
+
+# SQLite databases & temporary files
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+server/borrowbox.db
+server/borrowbox.db-wal
+server/borrowbox.db-shm
+
+# Environment variables & secrets
+.env
+server/.env
+*.env.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.gemini/

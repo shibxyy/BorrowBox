@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BorrowBox — Academic Project Documentation (Black & White)</title>
+  <style>
+    /* Monochrome Academic Print Stylesheet */
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+    body {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #000000;
+      background: #ffffff;
+      margin: 0 auto;
+      max-width: 850px;
+      padding: 40px 20px;
+    }
+    h1, h2, h3, h4, h5 {
+      color: #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      page-break-after: avoid;
+    }
+    h1 {
+      font-size: 18pt;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 11pt;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+    h2 {
+      font-size: 13pt;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 4px;
+      margin-top: 30px;
+      text-transform: uppercase;
+    }
+    h3 {
+      font-size: 11pt;
+      margin-top: 18px;
+    }
+    p, li {
+      text-align: justify;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 10pt;
+      page-break-inside: avoid;
+    }
+    table, th, td {
+      border: 1px solid #000000;
+    }
+    th {
+      background-color: #f2f2f2;
+      color: #000000;
+      font-weight: bold;
+      text-align: left;
+      padding: 6px 8px;
+    }
+    td {
+      padding: 5px 8px;
+      vertical-align: top;
+    }
+    code, pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+      background: #f9f9f9;
+      color: #000000;
+    }
+    pre {
+      border: 1px solid #000000;
+      padding: 10px;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+    .diagram-box {
+      border: 1px solid #000000;
+      background: #ffffff;
+      padding: 15px;
+      margin: 15px 0;
+      page-break-inside: avoid;
+      text-align: center;
+    }
+    .diagram-caption {
+      font-size: 9pt;
+      font-style: italic;
+      margin-top: 6px;
+      text-align: center;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    .no-print-bar {
+      background: #f0f0f0;
+      border: 1px solid #000000;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+    }
+    .btn-print {
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 6px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 10pt;
+      margin-left: 10px;
+    }
+    @media print {
+      .no-print-bar {
+        display: none;
+      }
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      themeVariables: {
+        primaryColor: '#ffffff',
+        primaryTextColor: '#000000',
+        primaryBorderColor: '#000000',
+        lineColor: '#000000',
+        secondaryColor: '#f4f4f4',
+        tertiaryColor: '#ffffff'
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div class="no-print-bar">
+    <strong>Academic Print Preview Mode (Monochrome / Black & White)</strong>
+    <span>— Press Ctrl + P to save as clean PDF or print directly.</span>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <h1>BorrowBox — System Documentation</h1>
+  <div class="subtitle">
+    A Community-Based Sharing and Borrowing Platform<br>
+    <strong>Guiding Principle:</strong> “Don’t Buy It. Borrow It. Share It. Reuse It.”<br>
+    BCA FYUGP Mini Project Report
+  </div>
+
+  <h2>1. Project Abstract</h2>
+  <p>
+    BorrowBox is a decentralized community sharing platform engineered around the circular economy principle of collaborative consumption. The platform establishes a structured, location-aware peer network allowing verified users to list idle equipment (cameras, tools, academic books, musical gear, and camping equipment) for temporary borrowing. Transactions progress across an automated 5-stage lifecycle: <strong>Requested &rarr; Approved &rarr; Active (Handover) &rarr; Returned &rarr; Completed</strong>. Built-in mutual rating calculations maintain user Trust Scores, while an Administrative module governs user verification, dispute resolution, and listing moderation.
+  </p>
+
+  <h2>2. Problem Statement & System Need</h2>
+  <ul>
+    <li><strong>Resource Underutilization:</strong> Valuable household, academic, and technical items remain idle for the majority of their lifecycle.</li>
+    <li><strong>Prohibitive Purchase Costs:</strong> Borrowers often need items for one-time or short-term use, where buying creates financial strain.</li>
+    <li><strong>Lack of Structured Security:</strong> Existing informal channels (word-of-mouth or chat groups) provide no recorded handover terms, deposit security, or due date reminders.</li>
+    <li><strong>Absence of Reputation Metrics:</strong> Without verified user identity and rating histories, item owners face fear of damage or theft.</li>
+  </ul>
+
+  <h2>3. Core System Modules (4)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Module</th>
+        <th>Description & Key Functions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. User Registration, Login & Profile</strong></td>
+        <td>Secure authentication with JWT and bcrypt password hashing. User profiles record verification status, location, bio, Trust Score, and combined borrowing & lending transaction counts.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Item Listing & Discovery</strong></td>
+        <td>Allows owners to list equipment with condition grades, location, security deposit, max duration, and photos. Borrowers filter by keyword, category, condition, and availability.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Borrowing Request, Management & Alerts</strong></td>
+        <td>Governs the transaction lifecycle: Request submission &rarr; Owner approval &rarr; Physical handover &rarr; Return confirmation &rarr; Transaction closing with automatic in-app alerts.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Rating, Trust Score & Admin Panel</strong></td>
+        <td>Two-way reciprocal ratings calculate an objective 1.0–5.0 Trust Score. Admin panel enables identity verification, category management, content moderation, and dispute settlement.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Entity-Relationship (ER) Diagram</h2>
+  <div class="diagram-box">
+    <div class="mermaid">
+    erDiagram
+        USERS ||--o{ ITEMS : "owns / lists"
+        CATEGORIES ||--o{ ITEMS : "classifies"
+        USERS ||--o{ BORROW_REQUESTS : "initiates (borrower)"
+        USERS ||--o{ BORROW_REQUESTS : "receives (owner)"
+        ITEMS ||--o{ BORROW_REQUESTS : "item requested"
+        BORROW_REQUESTS ||--o{ REVIEWS : "generates"
+        USERS ||--o{ REVIEWS : "reviewer"
+        USERS ||--o{ REVIEWS : "reviewee"
+        USERS ||--o{ NOTIFICATIONS : "receives"
+        USERS ||--o{ DISPUTES : "reports"
+        ITEMS ||--o{ DISPUTES : "reported item"
+
+        USERS {
+            int id PK
+            string name
+            string email
+            string phone
+            string password
+            string location
+            string role
+            int is_verified
+            float trust_score
+        }
+
+        CATEGORIES {
+            int id PK
+            string name
+            string description
+            string icon
+        }
+
+        ITEMS {
+            int id PK
+            int owner_id FK
+            int category_id FK
+            string title
+            string condition
+            string location
+            float security_deposit
+            int max_duration_days
+            int is_available
+            string status
+        }
+
+        BORROW_REQUESTS {
+            int id PK
+            int item_id FK
+            int borrower_id FK
+            int owner_id FK
+            string start_date
+            string return_date
+            string purpose
+            string status
+        }
+
+        REVIEWS {
+            int id PK
+            int request_id FK
+            int reviewer_id FK
+            int reviewee_id FK
+            int rating
+            string comment
+            string review_type
+        }
+
+        NOTIFICATIONS {
+            int id PK
+            int user_id FK
+            string title
+            string message
+            int is_read
+        }
+
+        DISPUTES {
+            int id PK
+            int reporter_id FK
+            int item_id FK
+            string reason
+            string details
+            string status
+        }
+    </div>
+    <div class="diagram-caption">Figure 4.1: BorrowBox Entity-Relationship (ER) Diagram</div>
+  </div>
+
+  <h2>5. Transaction Lifecycle State Machine</h2>
+  <div class="diagram-box">
+    <div class="mermaid">
+    stateDiagram-v2
+        [*] --> Requested : Borrower submits request
+        Requested --> Approved : Owner approves
+        Requested --> Rejected : Owner declines
+        Requested --> Cancelled : Borrower cancels
+        Approved --> Active : Handover confirmed (Item locked)
+        Active --> Returned : Item returned safely
+        Returned --> Completed : Transaction closed
+        Completed --> [*] : Mutual ratings submitted
+        Rejected --> [*]
+        Cancelled --> [*]
+    </div>
+    <div class="diagram-caption">Figure 5.1: Finite State Machine for Borrowing Transaction</div>
+  </div>
+
+  <h2>6. Database Data Dictionary</h2>
+  <h3>6.1 Table: USERS</h3>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Key</th><th>Description</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>PK</td><td>Primary Key, Auto Increment</td></tr>
+    <tr><td>name</td><td>TEXT</td><td>-</td><td>User's full name</td></tr>
+    <tr><td>email</td><td>TEXT</td><td>UNIQUE</td><td>Login email address</td></tr>
+    <tr><td>phone</td><td>TEXT</td><td>-</td><td>Contact telephone</td></tr>
+    <tr><td>password</td><td>TEXT</td><td>-</td><td>Salted Bcrypt password hash</td></tr>
+    <tr><td>location</td><td>TEXT</td><td>-</td><td>College / Neighborhood / Campus</td></tr>
+    <tr><td>role</td><td>TEXT</td><td>-</td><td>'user' or 'admin'</td></tr>
+    <tr><td>is_verified</td><td>INTEGER</td><td>-</td><td>1 = Verified, 0 = Unverified</td></tr>
+    <tr><td>trust_score</td><td>REAL</td><td>-</td><td>Reputation score (1.0 to 5.0)</td></tr>
+    <tr><td>created_at</td><td>DATETIME</td><td>-</td><td>Account registration timestamp</td></tr>
+  </table>
+
+  <h3>6.2 Table: ITEMS</h3>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Key</th><th>Description</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>PK</td><td>Primary Key</td></tr>
+    <tr><td>owner_id</td><td>INTEGER</td><td>FK</td><td>References USERS(id)</td></tr>
+    <tr><td>category_id</td><td>INTEGER</td><td>FK</td><td>References CATEGORIES(id)</td></tr>
+    <tr><td>title</td><td>TEXT</td><td>-</td><td>Item headline title</td></tr>
+    <tr><td>description</td><td>TEXT</td><td>-</td><td>Detailed specifications</td></tr>
+    <tr><td>condition</td><td>TEXT</td><td>-</td><td>Brand New, Like New, Good, Fair</td></tr>
+    <tr><td>location</td><td>TEXT</td><td>-</td><td>Pickup / Handover location</td></tr>
+    <tr><td>security_deposit</td><td>REAL</td><td>-</td><td>Refundable deposit in INR</td></tr>
+    <tr><td>max_duration_days</td><td>INTEGER</td><td>-</td><td>Maximum loan duration allowed</td></tr>
+    <tr><td>is_available</td><td>INTEGER</td><td>-</td><td>1 = Available, 0 = On Loan</td></tr>
+    <tr><td>status</td><td>TEXT</td><td>-</td><td>'active', 'hidden', 'flagged'</td></tr>
+  </table>
+
+  <h3>6.3 Table: BORROW_REQUESTS</h3>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Key</th><th>Description</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>PK</td><td>Primary Key</td></tr>
+    <tr><td>item_id</td><td>INTEGER</td><td>FK</td><td>References ITEMS(id)</td></tr>
+    <tr><td>borrower_id</td><td>INTEGER</td><td>FK</td><td>References USERS(id)</td></tr>
+    <tr><td>owner_id</td><td>INTEGER</td><td>FK</td><td>References USERS(id)</td></tr>
+    <tr><td>start_date</td><td>TEXT</td><td>-</td><td>Beginning of loan (YYYY-MM-DD)</td></tr>
+    <tr><td>return_date</td><td>TEXT</td><td>-</td><td>Scheduled return date</td></tr>
+    <tr><td>purpose</td><td>TEXT</td><td>-</td><td>Borrower's usage note</td></tr>
+    <tr><td>status</td><td>TEXT</td><td>-</td><td>Requested, Approved, Active, Returned, Completed</td></tr>
+  </table>
+
+  <h2>7. Technology Stack Specifications</h2>
+  <table>
+    <tr><th>Layer</th><th>Selected Technology</th><th>Technical Justification</th></tr>
+    <tr><td><strong>Frontend</strong></td><td>React 18, Vite, Tailwind CSS</td><td>High render speed, reactive state management, clean responsive UI.</td></tr>
+    <tr><td><strong>Backend</strong></td><td>Node.js, Express.js</td><td>Lightweight non-blocking REST API architecture.</td></tr>
+    <tr><td><strong>Database</strong></td><td>SQLite (Better-SQLite3 / SQLite3)</td><td>Zero-configuration, self-contained relational file; runs with zero external dependencies.</td></tr>
+    <tr><td><strong>Security</strong></td><td>JWT, Bcryptjs</td><td>Cryptographically signed stateless sessions and salted 1-way password encryption.</td></tr>
+  </table>
+
+  <h2>8. Conclusion</h2>
+  <p>
+    BorrowBox demonstrates an achievable, socially practical, and technically sound full-stack solution to consumer resource underutilization. By combining structured workflows, objective reputation metrics, and administrative oversight, the platform provides a safe environment for community borrowing while advancing the academic objectives of the BCA FYUGP program.
+  </p>
+
+</body>
+</html>

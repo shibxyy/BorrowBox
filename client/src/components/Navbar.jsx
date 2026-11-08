@@ -61,7 +61,6 @@ export const Navbar = () => {
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-extrabold text-slate-900 tracking-tight">Borrow<span className="text-emerald-600">Box</span></span>
-                <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-emerald-100 text-emerald-800 tracking-wider">FYUGP</span>
               </div>
               <span className="hidden sm:block text-[10px] text-slate-400 font-medium -mt-0.5">Community Sharing & Borrowing</span>
             </div>
